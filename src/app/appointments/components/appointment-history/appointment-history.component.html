@@ -1,0 +1,122 @@
+<!-- 
+<div class="main-wrapper">
+    <app-menu></app-menu>
+  
+    <div class="page-wrapper">
+      <div class="content">
+        <div class="row">
+          <div class="col-sm-4 col-3">
+            <h4 class="page-title">Appointments</h4>
+          </div>
+          <div class="col-sm-8 col-9 text-right m-b-20">
+            <a href="addAppointments" class="btn btn-primary btn-rounded float-right text-light"><i
+                class="fa fa-plus"></i> Add Appointments</a>
+          </div>
+          <div class="col-sm-12 text-right m-b-20">
+            <a class="btn btn-secondary btn-rounded float-right text-light" (click)="lists()">Card View
+            </a>
+            <a class="btn btn-secondary btn-rounded float-right text-light" (click)="cards()">List View</a>
+          </div>
+        </div>
+        <div class="row" *ngIf="list">
+          <div class="col-md-12">
+            <div class="table-responsive">
+              <table class="table table-striped custom-table">
+                <thead>
+                  <tr>
+                    <th>Appointment ID</th>
+                    <th>Pet Name</th>
+                    <th>Age</th>
+                    <th>Doctor Name</th>
+                    <th>Department</th>
+                    <th>Appointment Date</th>
+                    <th>Appointment Time</th>
+                    <th>Status</th>
+                    <th class="text-right">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+  
+                  <tr *ngFor="let a of appinfo">
+                    <td>{{a.appointmentId}}</td>
+                    <td>{{a.petName}}</td>
+                    <td>{{a.petAge}}</td>
+                    <td>{{a.vetName}}</td>
+                    <td>{{a.department}}</td>
+                    <td>{{a.date}}</td>
+                    <td>{{a.time}}</td>
+                    <td>{{a.appointmentStatus}}</td>
+                    <td class="text-right">
+                      <div class="dropdown dropdown-action">
+                        <a class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i
+                            class="fa fa-ellipsis-v"></i></a> <div class="dropdown-menu dropdown-menu-right"> 
+                          <a class="dropdown-item"><i class="fa fa-pencil m-r-5"></i> Edit</a> 
+                          <button class="dropdown-item" href="#" data-toggle="modal"
+                            data-target="#delete_patient" (click) = "deleteAppointment(a.appointmentId)">Delete</button>
+                        </div>
+                        </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="row doctor-grid" *ngIf="card">
+        <div class="col-md-4 col-sm-4 col-lg-3" *ngFor="let a1 of cardInfo;">
+          <div class="profile-widget">
+            <div class="doctor-img">
+              <a class="avatar" href="#">
+                <img alt="" src="assets/img/catti.png" /></a>
+            </div>
+            <div class="dropdown profile-action">
+              <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i
+                  class="fa fa-ellipsis-v"></i></a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" [routerLink]="['/appointmentHistory']"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_doctor"><i>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                  </svg></i>Cancel</a>
+              </div>
+            </div>
+            <h4 class="doctor-name text-ellipsis">
+              <a>COCO</a>
+            </h4>
+  <div class="user-country"> 
+     <b>
+      <h3 style="text-transform:uppercase; color: black;">{{a1.petName}}</h3></b>,
+      <br style="text-align: center;">
+      <i class="fa fa-map-marker" routerLink="cardinfo/{{a1.petId}}"></i> 
+      {{a1.state}},
+      {{a1.city}},
+      {{a1.country}},
+      {{a1.pincode}}
+    </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="see-all">
+              <a class="see-all-btn" href="javascript:void(0);">Load More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="delete_doctor" class="modal fade delete-modal" role="dialog">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body text-center">
+            <img src="assets/img/sent.png" alt="" width="50" height="46"/>
+            <h3>Are you sure want to cancel this appointment?</h3>
+            <div class="m-t-20">
+              <a  class="btn btn-white" data-dismiss="modal">Close</a>
+              <button type="submit" class="btn btn-danger" >Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div> -->

@@ -1,0 +1,8 @@
+.page-title{
+  font-size: xx-large;
+  font-style: normal;
+}
+.profile-widget:hover
+{
+    box-shadow: 10px 20px 20px rgb(112, 110, 110);
+}

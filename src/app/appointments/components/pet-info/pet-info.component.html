@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+ 
+   <div class="card" style="width: 40rem; top: 2.5rem;left: 1rem;">
+  <div class="card-body">
+    <div class="doctor-img">
+        <a class="avatar">
+       <img alt="" src="assets/img/PetIcon.png"/></a>
+        </div>
+         <div class="row">
+       <div class="col-sm-3">
+       <h6 class="mb-0">Pet Name</h6>
+       </div>
+       <div class="col-sm-9 text-center">
+       {{petInfo.petName}}
+       </div>
+        </div>
+       <hr>
+       <div class="row">
+       <div class="col-sm-3">
+       <h6 class="mb-0">Pet Age</h6>
+       </div>
+       <div class="col-sm-9 text-center">
+       {{petInfo.petAge}}
+       </div>
+       </div>
+       <hr>
+       <div class="row">
+       <div class="col-sm-3">
+       <h6 class="mb-0">Gender</h6>
+       </div> 
+       <div class="col-sm-9 text-center">
+       {{petInfo.gender}} 
+       </div> 
+        </div>  
+       <div class="row">
+       <div class="col-sm-3">
+       <h6 class="mb-0">Mobile</h6>
+       </div>
+       <div class="col-sm-9 text-center">
+       {{petInfo.parentPhoneNumber}}
+       </div>
+       </div>
+       <div class="row">
+       </div>
+       <hr>
+       <div class="row">
+       <div class="col-sm-3">
+       <h6 class="mb-0">Email</h6>
+       </div>
+       <div class="col-sm-9 text-center">
+       {{petInfo.parentEmailId}}
+       </div>
+        </div>
+       <hr>
+       <div class="row">
+        <div class="col-sm-3">
+        <h6 class="mb-0">City</h6>
+       </div>
+       <div class="col-sm-9 text-center">
+       {{petInfo.city}}
+       </div>
+       </div>
+       <hr>
+       <div class="row">
+       <div class="col-sm-3">
+        <h6 class="mb-0">State</h6>
+       </div>
+       <div class="col-sm-9 text-center">
+       {{petInfo.state}}
+       </div>
+       </div>
+       <hr>
+       <div class="row">
+       <div class="col-sm-3">
+       <h6 class="mb-0">Country</h6>
+       </div>
+       <div class="col-sm-9 text-center">
+       {{petInfo.country}}
+       </div>
+       </div>
+       <hr>
+       <div class="row">
+       <div class="col-sm-3">
+        <h6 class="mb-0">Status</h6>
+        </div>
+       <div class="col-sm-9 text-center" [style.color]="petInfo.petStatus?'Green':'red'">
+       {{petInfo.petStatus?'Available':'NotAvailable'}}
+       </div>
+       </div>
+       <hr>
+       <div class="row">
+       <div class="col-sm-12">
+       <!-- <a class="btn btn-info " target="__blank" routerLink="/editInfo/{{petInfo.petId}}">Edit</a> --> 
+       </div>
+       </div>
+       </div>
+       </div> 
+
+        <div class="card" style="width: 40rem;">
+        <div class="card-body"> 
+            <h4>        Previous Appointment Details!.............</h4>
+            <div class="col-md-12">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead style="font-size: small;">
+                      <tr>
+                        <th>vetName</th>
+                        <th>Appointment date</th>
+                        <th>Appointment time</th>
+                       
+                        <th>Appointment Status</th>
+                      </tr>
+                    </thead>
+                    <tbody style="font-size: x-small;">
+      
+                      <tr *ngFor="let a of appointmentinfo">
+                        <td>{{a.vetDetails}}</td>
+                        <td>{{a.date}}</td>
+                        <td>{{a.time}}</td>
+                        <!-- <td>{{a.moreDetails}}</td> -->
+                        
+                        <td>{{a.appointmentStatus}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+            <!-- <div class="row">
+                <div class="col-sm-3" >
+                <h6 class="mb-0">Appointment Id:</h6>
+                </div>
+                <div class="col-sm-9 text-center">
+                {{a.appointmentId}}
+                </div>
+                 </div>
+                 <div class="row">
+                    <div class="col-sm-3" >
+                    <h6 class="mb-0">Appointment date:</h6>
+                    </div>
+                    <div class="col-sm-9 text-center">
+                    {{a.date}}
+                    </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-sm-3" >
+                        <h6 class="mb-0">Appointment time:</h6>
+                        </div>
+                        <div class="col-sm-9 text-center">
+                        {{a.time}}
+                        </div>
+                         </div>
+                         <div class="row">
+                            <div class="col-sm-3" >
+                            <h6 class="mb-0">More Details:</h6>
+                            </div>
+                            <div class="col-sm-9 text-center">
+                            {{a.moreDetails}}
+                            </div>
+                             </div>
+                             <div class="row">
+                                <div class="col-sm-3" >
+                                <h6 class="mb-0">Documents:</h6>
+                                </div>
+                                <div class="col-sm-9 text-center">
+                                {{a.documents}}
+                                </div>
+                                 </div>
+                                 <div class="row">
+                                    <div class="col-sm-3" >
+                                    <h6 class="mb-0">status:</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-center">
+                                    {{a.status}}
+                                    </div>
+                                     </div>
+                                     <div class="row">
+                                        <div class="col-sm-3" >
+                                        <h6 class="mb-0">appointmentStatus:</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-center">
+                                        {{a.appointmentStatus}}
+                                        </div>
+                                         </div>-->
+           
+    
+       
+           
+          
+</body>
+</html>

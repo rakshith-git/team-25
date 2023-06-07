@@ -1,0 +1,371 @@
+<div class="main-wrapper">
+  <app-menu></app-menu>
+  <div class="page-wrapper">
+    <div class="content">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+          <h4 class="page-title"><b>Add Vets</b></h4>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+          <form [formGroup]="addForm" (ngSubmit)="addVet()">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>First Name <span class="text-danger">*</span></label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    formControlName="firstName"
+                    [(ngModel)]="adddetails.firstName"
+                  />
+                  <span
+                    *ngIf="
+                      addForm.get('firstName')?.invalid &&
+                      addForm.get('firstName')?.touched
+                    "
+                    class="text-danger"
+                    >Required Field</span
+                  ><br />
+                  <span
+                    *ngIf="addForm.get('firstName')?.hasError('minlength')"
+                    class="text-danger"
+                    >Name shloud be of atleast 3 character</span
+                  ><br />
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Last Name</label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    formControlName="lastName"
+                    [(ngModel)]="adddetails.lastName"
+                  />
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>User Name<span class="text-danger">*</span></label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    formControlName="userName"
+                    [(ngModel)]="adddetails.userName"
+                  />
+                  <span
+                    *ngIf="
+                      addForm.get('userName')?.invalid &&
+                      addForm.get('userName')?.touched
+                    "
+                    class="text-danger"
+                    >Required Field</span
+                  ><br />
+                  <span
+                    *ngIf="addForm.get('userName')?.hasError('minlength')"
+                    class="text-danger"
+                    >UserName shloud be of atleast 3 character</span
+                  ><br />
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Specialist <span class="text-danger">*</span></label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    formControlName="department"
+                    [(ngModel)]="adddetails.department"
+                  />
+                  <span
+                    *ngIf="
+                      addForm.get('department')?.invalid &&
+                      addForm.get('department')?.touched
+                    "
+                    class="text-danger"
+                    >Required Field</span
+                  ><br />
+                  <span
+                    *ngIf="addForm.get('department')?.hasError('minlength')"
+                    class="text-danger"
+                    >Department shloud be of atleast 3 character</span
+                  ><br />
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Clinic <span class="text-danger">*</span></label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    formControlName="clinic"
+                    [(ngModel)]="adddetails.clinic"
+                  />
+                  <span
+                    *ngIf="
+                      addForm.get('clinic')?.invalid &&
+                      addForm.get('clinic')?.touched
+                    "
+                    class="text-danger"
+                    >Required Field</span
+                  ><br />
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>DOB <span class="text-danger">*</span></label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    formControlName="dob"
+                    [(ngModel)]="adddetails.dob"
+                    placeholder="dd-mm-yyyy"
+                  />
+                  <span
+                    *ngIf="
+                      addForm.get('dob')?.invalid && addForm.get('dob')?.touched
+                    "
+                    class="text-danger"
+                    >Required Field</span
+                  ><br />
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="form-group gender-select">
+                  <label class="gen-label"
+                    >Gender:<span class="text-danger">*</span></label
+                  >
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        name="gender"
+                        class="form-check-input"
+                        formControlName="gender"
+                        [(ngModel)]="adddetails.gender"
+                        value="Male"
+                      />Male
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        name="gender"
+                        class="form-check-input"
+                        formControlName="gender"
+                        [(ngModel)]="adddetails.gender"
+                        value="Female"
+                      />Female
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-12">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label>Address<span class="text-danger">*</span></label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="address"
+                        [(ngModel)]="adddetails.address"
+                      />
+                      <span
+                        *ngIf="
+                          addForm.get('address')?.invalid &&
+                          addForm.get('address')?.touched
+                        "
+                        class="text-danger"
+                        >Required Field</span
+                      ><br />
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="form-group">
+                      <label>City</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="city"
+                        [(ngModel)]="adddetails.city"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>State </label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    class="form-control"
+                    formControlName="state"
+                    [(ngModel)]="adddetails.state"
+                  />
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Email<span class="text-danger">*</span></label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    class="form-control"
+                    formControlName="email"
+                    [(ngModel)]="adddetails.email"
+                  />
+                  <!-- while Adding a new vet check the validation for the email form field
+                    * The form field should be required type.
+                    * If the user touches the form field and move out from the email form field, then it should through an error message as "Email is required field, please fill."
+                    * Email should contain '@' symbol, if not show an error message as "Please fill proper email address." -->
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Country<span class="text-danger">*</span></label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    formControlName="country"
+                    [(ngModel)]="adddetails.country"
+                  />
+                  <span
+                    *ngIf="
+                      addForm.get('country')?.invalid &&
+                      addForm.get('country')?.touched
+                    "
+                    class="text-danger"
+                    >Required Field</span
+                  ><br />
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Phone Number<span class="text-danger">*</span></label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    formControlName="mobileNo"
+                    [(ngModel)]="adddetails.mobileNo"
+                  />
+                  <span
+                    *ngIf="
+                      addForm.get('mobileNo')?.invalid &&
+                      addForm.get('mobileNo')?.touched
+                    "
+                    class="text-danger"
+                    >Contact Number is Required</span
+                  ><br />
+                  <span
+                    *ngIf="addForm.get('mobileNo')?.hasError('minlength')"
+                    class="text-danger"
+                    >Contact number should contain 10 characters</span
+                  ><br />
+                  <span
+                    *ngIf="addForm.get('mobileNo')?.hasError('pattern')"
+                    class="text-danger"
+                    >Number should start with 6-9</span
+                  >
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Avatar</label>
+                  <div class="profile-upload">
+                    <div class="upload-img">
+                      <img alt="" src="assets/img/user.jpg" />
+                    </div>
+                    <div class="upload-input">
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="avatar"
+                        [(ngModel)]="adddetails.avatar"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Short Biography</label>
+              <textarea
+                class="form-control"
+                rows="3"
+                cols="30"
+                formControlName="shortBiography"
+                [(ngModel)]="adddetails.shortBiography"
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="display-block">Status</label>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="status"
+                  id="doctor_active"
+                  value="option1"
+                  checked
+                  formControlName="status"
+                  [(ngModel)]="adddetails.status"
+                  value="true"
+                />
+                <label class="form-check-label" for="doctor_active">
+                  Active
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="status"
+                  id="doctor_inactive"
+                  value="option2"
+                  formControlName="status"
+                  [(ngModel)]="adddetails.status"
+                  value="false"
+                />
+                <label class="form-check-label" for="doctor_inactive">
+                  Inactive
+                </label>
+              </div>
+            </div>
+
+            <div class="m-t-20 text-center">
+              <button
+                class="btn btn-primary submit-btn"
+                type="submit"
+                [disabled]="!addForm.valid"
+                (click)="confirm()"
+              >
+                Create Vet
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

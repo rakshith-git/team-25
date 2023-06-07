@@ -1,0 +1,138 @@
+<div class="main-wrapper">
+    <app-menu></app-menu>
+    <div class="page-wrapper">
+      <div class="content">
+        <div class="row">
+          <div class="col-lg-8 offset-lg-2">
+            <h4 class="page-title">Edit Pet</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-8 offset-lg-2">
+            <form [formGroup]="addForm">
+              <div class="row">
+
+  
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label >Parent First Name <span class="text-danger">*</span></label>
+                    <input class="form-control" formControlName="parentFName"  type="text" [(ngModel)]="updateDetails.parentFName"  />
+                    <span *ngIf="parentFName && parentFName.invalid && parentFName.touched" style="color: red;">Invalid Input: Parent first name should not be null</span>
+                  </div>
+
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label >Parent Last Name <span class="text-danger">*</span></label>
+                    
+                    <input class="form-control" formControlName="parentLName"  type="text" [(ngModel)]="updateDetails.parentLName"  />
+                    <span *ngIf="parentLName && parentLName.invalid && parentLName.touched" style="color: red;">Invalid Input: Parent last name should not be null</span>
+
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Pet Name</label>
+                    <input class="form-control" formControlName="petName" [(ngModel)]="updateDetails.petName" type="text"/>
+                    <span *ngIf="petName && petName.invalid && petName.touched" style="color: red;">Invalid Input: Pet name should not be null</span>
+
+                  </div>
+                </div>  
+                 
+                 <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Parent Email <span class="text-danger">*</span></label>
+                    <input class="form-control" formControlName="parentEmailId" [(ngModel)]="updateDetails.parentEmailId" type="text"/>
+                    <span *ngIf="parentEmailId && parentEmailId.invalid && parentEmailId.touched" style="color: red;">Invalid Input: EmailId should not be null</span>
+
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Pet Age <span class="text-danger">*</span></label>
+                    <input class="form-control" formControlName="petAge" [(ngModel)]="updateDetails.petAge" type="text"  />
+                    <span *ngIf="petAge && petAge.invalid && petAge.touched" style="color: red;">Invalid Input: pet Age should not be null</span>
+
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Gender</label>
+                  
+                    <input type="text" class="form-control" formControlName="petGender" [(ngModel)]="updateDetails.petGender" type="text" />
+                    <span *ngIf="petGender && petGender.invalid && petGender.touched" style="color: red;">Invalid Input:gender  should not be null</span>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Breed</label>
+                    
+                      <input type="text" class="form-control" formControlName="breed" [(ngModel)]="updateDetails.breed" type="text" />
+                      <span *ngIf="breed && breed.invalid && breed.touched" style="color: red;">Invalid Input:breed  should not be null</span>
+                    </div>
+                  </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Pet Parent Number</label>
+                    <input class="form-control" formControlName="parentPhoneNumber" [(ngModel)]="updateDetails.parentPhoneNumber" type="text" />
+                    <span *ngIf="parentPhoneNumber && parentPhoneNumber.invalid && parentPhoneNumber.touched" style="color: red;">Invalid Input:Phone number should not be null</span>
+
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>City</label>
+                    <input class="form-control" formControlName="city" [(ngModel)]="updateDetails.city" type="text" />
+                    <span *ngIf="city && city.invalid && city.touched" style="color: red;">Invalid Input: city should not be null</span>
+
+                  </div>
+                </div>
+         
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>State</label>
+                        <input class="form-control" formControlName="state" [(ngModel)]="updateDetails.state" type="text"/>
+                        <span *ngIf="state && state.invalid && state.touched" style="color: red;">Invalid Input: state should not be null</span>
+
+                      </div>
+                    </div>
+                    
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Country</label>
+                    <input class="form-control" formControlName="country" [(ngModel)]="updateDetails.country"  type="text" />
+                    <span *ngIf="country && country.invalid && country.touched" style="color: red;">Invalid Input: country should not be null</span>
+
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Pincode</label>
+                    <input class="form-control" formControlName="pincode" [(ngModel)]="updateDetails.pincode" type="text" />
+                    <span *ngIf="pincode && pincode.invalid && pincode.touched" style="color: red;">Invalid Input: pincode should not be null</span>
+
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Biography</label>
+                    
+                      <input type="text" class="form-control datetimepicker" formControlName="biography" [(ngModel)]="updateDetails.biography" type="text" />
+                      <span *ngIf="biography && biography.invalid && biography.touched" style="color: red;">Invalid Input:biography  should not be null</span>
+
+                    </div>
+                  </div>
+              </div>
+              
+              <div class="m-t-20 text-center">
+                 <button class="btn btn-primary submit-btn" type="submit" (click)="editPet()" [disabled]="!addForm.valid">Edit Pet</button>
+                <!-- <button  type="submit" (click)="addPet()">Create Pet</button> -->
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

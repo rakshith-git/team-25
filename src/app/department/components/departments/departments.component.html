@@ -1,0 +1,283 @@
+<div class="main-wrapper">
+  <app-menu></app-menu>
+  <div class="page-wrapper">
+    <div class="content">
+      <div class="row">
+        <div class="col-sm-5 col-5">
+
+          <h4 class="page-title">Departments</h4>
+          <h4 style="display: inline;">Total number of department : {{totalDepartments}}</h4>
+
+
+        </div>
+        <div class="col-sm-7 col-7 text-right m-b-30">
+          <a [routerLink]="['/addDepartment']" class="btn btn-primary btn-rounded"><i class="fa fa-plus"></i> Add Department</a>&nbsp;
+
+          <button type="button" class="btn btn-primary btn-rounded" data-toggle="modal" data-target="#exampleModal1"><i class="fa fa-plus"></i> Add Vet To Department</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table table-striped custom-table mb-0 datatable">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Department Name</th>
+                  <th>Department Email</th>
+                  <th>Department Status</th>
+                  <th>Vets</th>
+                  <th class="text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody >
+                <tr *ngFor="let dp of departmentList">
+                  <td>{{dp.departmentId}}</td>
+                  <div title="{{dp.description}}">
+                    <td>{{dp.departmentName}}</td>
+                  </div>
+                  <td>{{dp.departmentEmail}}</td>
+                  <td><span class="custom-badge" style="font-size: 15px;"
+                      [style.color]="dp.status?'Green':'Red' ">{{dp.status?'Active':'Inactive'}}</span>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
+                      (click)="getVetsByDepartmentId(dp.departmentId)">
+                      Vets
+                    </button>
+                  </td>
+                  <td class="text-right">
+                    <div class="dropdown dropdown-action">
+                      <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i
+                          class="fa fa-ellipsis-v"></i></a>
+                      <div class="dropdown-menu dropdown-menu-right">
+                        <!-- <a class="dropdown-item" href="#" data-target="#exampleModal" (click)="editDepartment"><i class="fa fa-pencil m-r-5"></i> Edit</a> -->
+                        <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal"
+                          style="width: 200px;" (click)="setDepartmentId(dp.departmentId)">Edit</button>&nbsp;
+                        <!-- <a class="dropdown-item" href="#" data-toggle="modal"
+                                                    data-target="#delete_department" style="width: 200px;" style="background-color: rgb(151, 94, 94); " ><i class="fa fa-trash-o m-r-5"></i>
+                                                    Delete</a> -->
+                        <button class="btn1 btn-info" href="#" data-toggle="modal" data-target="#delete_department"
+                          style="width: 200px;" (click)="setDepartmentId(dp.departmentId)">Delete</button>;
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+            <!-- <div>
+                          <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page=$evevnt"></pagination-controls>
+                        </div> -->
+          </div>
+          <!-- <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                       <button class="btn btn-primary" type="button" (click)="startingIndex =endIndex-6; endIndex=startingIndex + 3">Previous</button>&nbsp;
+                       <button class="btn btn-primary me-md-2" type="button" (click)="startingIndex=endIndex; endIndex=startingIndex+3">Next</button>
+                    </div> -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="delete_department" class="modal fade delete-modal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <img src="assets/img/sent.png" alt="" width="50" height="46">
+          <h3>Are you sure want to delete this Department?</h3>
+          <div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal" id="fnn">Close</a>
+            <button type="submit" class="btn btn-danger" (click)="deletedDepartment()"
+              data-dismiss="modal">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+
+  <div class="modal-dialog" role="document">
+
+    <div class="modal-content">
+
+      <div style="background: blue" class="modal-header">
+
+        <h5 class="modal-title" id="exampleModalLabel" style="color: white;">Edit Department</h5>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+          <span aria-hidden="true">&times;</span>
+
+        </button>
+
+      </div>
+
+      <div class="modal-body">
+
+        <form [formGroup]="loginForm" >
+          <div class="form-group">
+            <label>Department Name</label>
+            <input class="form-control" type="text" placeholder="enter department name"
+              formControlName="departmentName">
+            <span *ngIf="departmentName && departmentName.invalid && departmentName.touched" style="color: red;">Invalid
+              input feild</span>
+          </div>
+          <div class="form-group">
+            <label>Department Email Id</label>
+            <input class="form-control" type="email" formControlName="departmentEmail">
+            <span *ngIf="departmentEmail && departmentEmail.invalid && departmentEmail.touched"
+              style="color: red;">Invalid input feild</span>
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea type="text" cols="30" rows="4" class="form-control" formControlName="description"></textarea>
+            <span *ngIf="description && description.invalid && description.touched" style="color: red;">Invalid input
+              feild</span>
+          </div>
+
+          <div class="form-group">
+            <label class="display-block">Department Status</label>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="status" id="product_active" value="true"
+                formControlName="status">
+              <label class="form-check-label" for="product_active" value="Active">
+                Active
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="status" id="product_inactive" value="false"
+                formControlName="status">
+              <label class="form-check-label" for="product_inactive" value="Inactive">Inactive</label>
+            </div>
+            <span *ngIf="status && status.invalid && status.touched" style="color: red;">Invalid input feild</span>
+          </div>
+          <div class="m-t-20 text-center">
+            <button class="btn btn-primary submit-btn " (click)="editDepartment()" data-dismiss="modal">Update Department</button>
+          </div>
+        </form>
+
+
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Vet List</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body" *ngFor="let vt of vetsList">
+        <div *ngIf="vetsList.length !== 0; else templateName">
+          <div class="card" style="width: 18rem;" style="min-width:min(15.25rem,100%)">
+            <img src="{{vt.avatar}}" alt="Admin" width="150" style="align-items: center;">
+            <!-- <img class="card-img-top" src="../../../../assets/img/dummydoctor.jpg" alt="Card image cap"  style="width: min-content;"> -->
+            <div class="card-body">
+              <p class="card-text"></p>
+              <label>NPI Number: </label>
+              {{vt.npiNo}}
+              <br>
+              <label>Full Name: </label>
+              {{vt.firstName}} {{vt.lastName}}
+              <br>
+              <label>Mobile Number: </label>
+              {{vt.mobileNo}}
+              <br>
+              <label>Email: </label>
+              {{vt.email}}
+              <br>
+              <label>Country: </label>
+              {{vt.country}}
+            </div>
+
+          </div>
+
+
+        </div>
+        <ng-template #templateName>
+          <div class="card" style="width: 18rem;" style="min-width:min(15.25rem,100%)">
+            <!-- <img class="card-img-top" src="../../../../assets/img/doctor-thumb-01.jpg" alt="Card image cap"  > -->
+            <div class="card-body">
+              <p class="card-text">No Vets </p>
+            </div>
+
+          </div>
+        </ng-template>
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+  </div> -->
+
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Adding Department To Vets</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Department Id</label>
+            <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter department id"
+              #departmentId [(ngModel)]="vetToUpdate.departmentId" name="departmentId">
+
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Vet Id</label>
+            <input type="text" class="form-control" placeholder="enter vet id " #vetnpiNo
+              [(ngModel)]="vetToUpdate.vetnpiNo" name="vetnpiNo">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary submit-btn" (click)="addDepartmentToVet()"
+          data-dismiss="modal">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

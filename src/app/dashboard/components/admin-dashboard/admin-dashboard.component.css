@@ -1,0 +1,11 @@
+.txt:hover{
+    text-decoration: underline;
+}
+
+.center{
+    text-align: center;
+}
+
+.red{
+    background: red;
+}
