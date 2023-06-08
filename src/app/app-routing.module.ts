@@ -29,8 +29,8 @@ import { PetInfoComponent } from './pets/components/pet-info/pet-info.component'
 import { EditPetComponent } from './pets/components/edit-pet/edit-pet.component';
 
 const routes: Routes = [
-  {path: '', redirectTo:'/allAppointments',pathMatch:'full'},
-  {path: 'login', component:LoginComponent}, 
+  {path: '', redirectTo:'/vets',pathMatch:'full'},
+  {path: 'login', component:LoginComponent},
   {path: 'signup', component:SignupComponent},
   {path: 'verify-email', component:VerifyEmailComponent},
   {path: 'forgotPassword', component:ForgotPasswordComponent},

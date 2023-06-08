@@ -69,7 +69,7 @@
             </div>
 
             <h4 class="doctor-name text-ellipsis">
-              <a [routerLink]="['/vetInfo/{{vet.npiNo}}/{{vet.userName}}']">
+              <a  class="doctorname" [routerLink]="['/vetInfo/{{vet.npiNo}}/{{vet.userName}}']">
                 Dr. {{ vet.firstName }} {{ vet.lastName }}
               </a>
             </h4>
@@ -113,6 +113,9 @@
                         class="rounded-circle m-r-5"
                         alt=""
                       />
+                      <!-- write the class for the anchor tag,
+                         to make the changes in first name and last name
+                        chnage the css 1)font-weight 2) font-size -->
                       <a
                         [routerLink]="[
                           '/vetInfo/{{vet.npiNo}}/{{vet.userName}}'
