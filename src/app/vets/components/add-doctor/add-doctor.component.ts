@@ -68,7 +68,7 @@ export class AddDoctorComponent implements OnInit {
      let vet=this.addservice.addVetInfo(this.adddetails);
      vet.subscribe((data:any)=>{
       // write the code to navigate back to vets screen once vet details has been added
-    //  this.router.navigate(['/vets']);
+       
      console.log(data);
     },
     (error:any)=>
