@@ -1,0 +1,189 @@
+<div class="main-wrapper">
+    <app-menu></app-menu>
+    <div class="page-wrapper">
+        <div class="content">
+            <div class="row">
+                <div class="col-sm-8 col-6">
+                    <h4 class="page-title">Clinic Information</h4>
+                </div>
+                <div class="col-sm-4 col-6 text-right m-b-30">
+                    <a [routerLink]="['/addClinic']" class="btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> Add
+                        Clinic</a>
+                </div>
+            </div>
+            <div class="row filter-row">
+                <div class="col-sm-6 col-md-3">
+                    <div class="form-group form-focus">
+                        <input type="text" class="form-control floating" [(ngModel)]="clinic_Name">
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3">
+                    <a class="btn btn-success btn-block" (click)="getClinicDetailsByName()"> Search </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped custom-table mb-0 datatable">
+                            <thead>
+                                <tr>
+                                    <th>Clinic Info</th>
+                                    <th>Clinic Name</th>
+                                    <th>Clinic Location</th>
+                                    <th>Timings</th>
+                                    <th>Contact Number</th>
+                                    <th class="text-center">Status</th>
+                                    <th class="text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let clinic of clinicData">
+                                    <td>{{clinic.clinicInfo}}</td>
+                                    <td>
+                                        <strong>{{clinic.clinicName}}</strong>
+                                    </td>
+                                    <td>{{clinic.location}}</td>
+                                    <td>{{clinic.timings}}</td>
+                                    <td>{{clinic.phoneNumber}}</td>
+                                    <td class="text-center">
+                                        <div class="dropdown action-label">
+                                            <a [ngClass]="clinic.status == 'PENDING' ? 'custom-badge status-red dropdown-toggle' : 'custom-badge status-green dropdown-toggle' " href="#"
+                                                data-toggle="dropdown" aria-expanded="false">
+                                                {{clinic.status}}
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" (click)="updateStatus('PENDING', clinic.clinicId)">PENDING</a>
+                                                <a class="dropdown-item" (click)="updateStatus('APPROVED', clinic.clinicId)">APPROVED</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-right">
+                                        <div class="dropdown dropdown-action">
+                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#" data-toggle="modal"
+                                                    data-target="#exampleModal" (click)="edit(clinic)"><i
+                                                        class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                <a class="dropdown-item" href="#" data-toggle="modal"
+                                                    data-target="#delete_asset" (click)="setClinicId(clinic)"><i
+                                                        class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="delete_asset" class="modal fade delete-modal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <img src="assets/img/sent.png" alt="" width="50" height="46">
+                    <h3>Are you sure want to delete this Clinic?</h3>
+                    <div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
+                        <button type="submit" class="btn btn-danger" data-dismiss="modal" (click)="deleteClinicDetail()">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Clinic</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="formValue">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Clinic Info</label>
+                                    <input class="form-control" type="text" formControlName="clinicInfo" name="clinicInfo" >
+                                    <small *ngIf="formValue.get('clinicInfo')?.invalid && (formValue.get('clinicInfo')?.touched)" class="text-danger">Clinic Info is Required</small><br>
+                                    <small *ngIf="formValue.get('clinicInfo')?.hasError('minlength')" class="text-danger">Clinic Info should contain 3 characters</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Clinic Name</label>
+                                    <input class="form-control" type="text" formControlName="clinicName" name="clinicName"  >
+                                    <small *ngIf="formValue.get('clinicName')?.invalid &&  (formValue.get('clinicName')?.touched )" class="text-danger">Clinic Name is Required</small><br>
+                                    <small *ngIf="formValue.get('clinicName')?.hasError('minlength')" class="text-danger">Clinic Name should contain 3 characters</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Clinic Location</label>
+                                    <input class="form-control" type="text" formControlName="location" name="location"  >
+                                    <small *ngIf="formValue.get('location')?.invalid && formValue.get('location')?.touched" class="text-danger">Location is Required</small><br>
+                                    <small *ngIf="formValue.get('location')?.hasError('minlength')" class="text-danger">Clinic Location should contain 3 characters</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Open Time</label>
+                                        <input class="form-control" type="time" formControlName="openTimings" name="openTimings" >
+                                        <small *ngIf="formValue.get('openTimings')?.invalid && formValue.get('openTimings')?.touched" class="text-danger">Timing is Required</small><br>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Close Time</label>
+                                        <input class="form-control" type="time" formControlName="closeTimings" name="closeTimings" >
+                                        <small *ngIf="formValue.get('closeTimings')?.invalid && formValue.get('closeTimings')?.touched" class="text-danger">Timing is Required</small><br>
+                                    </div>
+                                </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Clinic Contact Number</label>
+                                    <input class="form-control" type="text" formControlName="phoneNumber" name="phoneNumber">
+                                    <small *ngIf="formValue.get('phoneNumber')?.invalid && formValue.get('phoneNumber')?.touched" class="text-danger">Contact Number is Required</small><br>
+                                    <small *ngIf="formValue.get('phoneNumber')?.hasError('minlength')" class="text-danger">Clinic contact number should contain 10 characters</small><br>
+                                    <small *ngIf="formValue.get('phoneNumber')?.hasError('pattern')" class="text-danger">Number is Invalid</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea class="form-control" formControlName="description" name="description" ></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Status</label>
+                                    <select class="select" formControlName="status" name="status" >
+                                        <small *ngIf="formValue.get('status')?.invalid && formValue.get('status')?.touched" class="text-danger">Status is Required</small>
+                                        <option>PENDING</option>
+                                        <option>APPROVED</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-t-20 text-center">
+                            <button class="btn btn-primary submit-btn" [disabled]="!formValue.valid" (click)="updateClinic()" data-dismiss="modal">Update Clinic</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

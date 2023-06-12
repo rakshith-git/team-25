@@ -1,0 +1,251 @@
+<div class="main-wrapper">
+  <app-menu></app-menu>
+
+  <div class="page-wrapper">
+    <div class="content">
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+          <div class="dash-widget">
+            <span class="dash-widget-bg3"
+              ><i class="fa fa-user-md" aria-hidden="true"></i
+            ></span>
+            <div class="dash-widget-info text-right">
+              <h3>{{totalAppointmentCount}}</h3>
+              <span class="widget-title3"
+                >Total <i class="fa fa-check" aria-hidden="true"></i
+              ></span>
+              <span>
+                Appointments
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+              <span class="dash-widget-Cancelled"
+                ><i class="fa fa-user-o" aria-hidden="true"></i
+              ></span>
+              <div class="dash-widget-info text-right">
+                <h3>{{cancelledAppointmentsCount}}</h3>
+                <span class="Cancelled"
+                  >Cancelled <i class="fa fa-check" aria-hidden="true"></i
+                ></span>
+                <span>
+                  Appointments
+                </span>
+              </div>
+            </div>
+          </div>
+          <!-- completed here -->
+          <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+              <span class="dash-widget-bg1"
+                ><i class="fa fa-user-o" aria-hidden="true"></i
+              ></span>
+              <div class="dash-widget-info text-right">
+                <h3>{{completedAppointments}}</h3>
+                <span class="widget-title1"
+                  >Completed <i class="fa fa-check" aria-hidden="true"></i
+                ></span>
+                <span> Appointments</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+              <span class="dash-widget-Approved"
+                ><i class="fa fa-user-o" aria-hidden="true"></i
+              ></span>
+              <div class="dash-widget-info text-right">
+                <h3>{{approvedAppointmentsCount}}</h3>
+                <span class="Approved"
+                  >Approved <i class="fa fa-check" aria-hidden="true"></i
+                ></span>
+                <span>
+                  Appointments
+                </span>
+              </div>
+            </div>
+          </div>
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+          <div class="dash-widget">
+            <span class="dash-widget-Pending"
+              ><i class="fa fa-user-o" aria-hidden="true"></i
+            ></span>
+            <div class="dash-widget-info text-right">
+              <h3>{{pendingAppointmentsCount}}</h3>
+              <span class="Pending"
+                >Pending <i class="fa fa-check" aria-hidden="true"></i
+              ></span>
+              <span>
+                Appointments
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+          <div class="dash-widget">
+            <span class="dash-widget-bg2"><i class="fa fa-user-o"></i></span>
+            <div class="dash-widget-info text-right">
+              <h3>{{totalPets}}</h3>
+              <span class="widget-title2"
+                >Pets <i class="fa fa-check" aria-hidden="true"></i
+              ></span><br>
+              <span>Total Pets</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+              <span class="dash-widget-bg1"
+                ><i class="fa fa-stethoscope" aria-hidden="true"></i
+              ></span>
+              <div class="dash-widget-info text-right">
+                <h3>{{totalVets}}</h3>
+                <span class="widget-title1"
+                  >Vets <i class="fa fa-check" aria-hidden="true"></i
+                ></span> <br>
+                <span>Total Vets</span>
+              </div>
+            </div>
+          </div>
+          
+      </div>
+      
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-8 col-xl-8">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title d-inline-block">Upcoming Appointments</h4>
+              <a [routerLink]="['/allAppointments']"  class="btn btn-secondary float-right" 
+                >View all</a>
+            </div>
+            <div *ngIf="isListNull()">
+              <span > <div class="center">
+                You have no appointments
+              </div></span>
+            </div>
+            <div class="card-body p-0" *ngFor = "let app of upcomingAppointments">
+             <div class="table-responsive">
+                <table class="table mb-0">
+                  <thead class="d-none">
+                    <tr>
+                      <th>Patient Name</th>
+                      <th>Doctor Name</th>
+                      <th>Timing</th>
+                      <th class="text-right">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="min-width: 200px">
+                        <a class="avatar" ><img src = "../../../../assets/img/Pet_Icon.jpg"></a>
+                        <h2>
+                          <h5 class="time-title p-0">Pet Details</h5>
+                          <a 
+                            >{{app.petName}}<span>{{app.city}} ,  {{app.state}}  , {{app.country}}</span></a
+                          >
+                        </h2>
+                      </td>
+                      <td>
+                        <h5 class="time-title p-0">Appointment With</h5>
+                        <p>{{app.vetName}}</p>
+                      </td>
+                      <td>
+                        <h5 class="time-title p-0">Timing</h5>
+                        <p>{{app.time}}</p>
+                      </td>
+                      <td class="text-right">
+                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >
+                            Take-up
+                          </button>
+                          
+                          
+                          
+                          <!-- Modal -->
+                          
+                          <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
+                          
+                            <div class="modal-dialog" role="document">
+                          
+                              <div class="modal-content">
+                          
+                                <div class="modal-header">
+                          
+                                  <h5 class="modal-title" id="exampleModalLabel" class ="center">Confirmation</h5>
+                          
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          
+                                    <span aria-hidden="true">&times;</span>
+                          
+                                  </button>
+                          
+                                </div>
+                          
+                                <div class="modal-body" class = "center" >
+                                  <h4 ><b> Confirm Appointment </b>
+                                  </h4>
+                                  Are you sure you want to take this Appointment ?
+                                </div>
+                          
+                                <div class="modal-footer">
+                          
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal"  >Cancel</button>
+                          
+                                  <button  class="text-muted" [routerLink]="['/allAppointments']" type="button" class="btn btn-primary" (click)="takeUpForAppointment(app.appointmentId)">Confirm</button>
+                          
+                                </div>
+                          
+                              </div>
+                          
+                            </div>
+                          
+                          </div>
+                        
+                      </td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 col-xl-4">
+          <div class="card member-panel">
+            <div class="card-header bg-white">
+              <h4 class="card-title mb-0">Doctors</h4>
+            </div>
+            <div class="card-body" >
+              <ul class="contact-list" *ngFor = "let vet of vetList">
+                <li>
+                  <div class="contact-cont">
+                    <div class="float-left user-img m-r-10">
+                      <a  title={{vet.firstName}}
+                        ><img
+                          src='../../../../assets/img/doc_icon.png'                         
+                          class="w-40 rounded-circle" /><span
+                          class= {{getVetStatus(vet.status)}}
+                        ></span 
+                      ></a>
+                    </div>
+                    <div class="contact-info">
+                      <span class="contact-name text-ellipsis">{{vet.firstName}} {{vet.lastName}}</span>
+                      <span class="contact-date">{{vet.department}}</span>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="card-footer text-center bg-white">
+              <a  class="text-muted" [routerLink] = "['/vets']" class = "txt"><u>View all Doctors</u></a>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  
+  </div>
+</div>

@@ -1,0 +1,114 @@
+
+<div class="main-wrapper">
+  <!-- <app-menu></app-menu> -->
+  <app-menu></app-menu>
+      <div class="container" >
+        <div class="main-body">
+        
+              <br><br>    
+              <div class="row gutters-sm">
+                
+                <div class="col-md-6  ">
+                  <div class="space">
+                  <div class="card mb-6">
+                    <div class="card-body">
+
+                      <div class="doctor-img">
+                        <a class="avatar"><img alt="" src="assets/img/PetIcon.png"/></a>
+                      </div>
+                    
+                     
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Pet-Name</h6>
+                        </div>
+                        <div class="col-sm-9 text-center">
+                          {{petInfo.petName}}
+                        </div>
+                      </div>
+                      <hr>  
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Pet Age</h6>
+                        </div>
+                        <div class="col-sm-9 text-center">
+                          {{petInfo.petAge}}
+                        </div>
+                      </div>
+                      <hr>  
+                  
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Mobile</h6>
+                        </div>
+                        <div class="col-sm-9 text-center">
+                          {{petInfo.parentPhoneNumber}}
+                        </div>
+                      </div>
+                     
+                      <div class="row">
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Email</h6>
+                        </div>
+                        <div class="col-sm-9 text-center">
+                          {{petInfo.parentEmailId}}
+                        </div>
+                      </div>
+                      <hr>
+                   
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">City</h6>
+                        </div>
+                        <div class="col-sm-9 text-center">
+                          {{petInfo.city}}
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">State</h6>
+                        </div>
+                        <div class="col-sm-9 text-center">
+                          {{petInfo.state}}
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Country</h6>
+                        </div>
+                        <div class="col-sm-9 text-center">
+                          {{petInfo.country}}
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Status</h6>
+                        </div>
+                        <div class="col-sm-9 text-center" [style.color]="petInfo.petStatus?'Green':'red'">
+                          {{petInfo.petStatus?'Available':'NotAvailable'}}
+                        </div>
+                      </div>
+                      <hr>
+                      
+                      <div class="row">
+                        <div class="col-sm-12">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+    
+                  <div class="row gutters-sm">
+                  </div>
+                  </div>
+                </div>
+              </div>
+    
+            </div>
+        </div>
+    </div>

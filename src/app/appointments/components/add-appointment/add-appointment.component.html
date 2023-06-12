@@ -1,0 +1,124 @@
+<div class="main-wrapper">
+    <app-menu></app-menu>
+<div class="page-wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h4 class="page-title">Add Appointment</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <form #appointmentEditForm="ngForm" (ngSubmit)="onSubmit(appointmentEditForm.value)">
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Appointment ID</label>
+                                <input class="form-control" type="text" name = "appointmentId" readonly = "">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Pet Owner Name</label>
+                                <input class="form-control" type="text" name = "parentName" placeholder="your name" id = "parentName" [(ngModel)] = "petObject.parentFName" readonly="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Pet</label>
+                                <select name = "pet" class="form-control" [(ngModel)] = "petObject">
+                                    <option *ngFor="let pet of pets" [ngValue]="pet">{{pet.petName}} </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Clinic</label>
+                                <!-- <input class="form-control" type="text" name = "clinicName" placeholder="Clinic" id = "clinic" [(ngModel)] = "clinicName" (focusout) = "validateClinic(clinicName)"> -->
+                                <select name = "clinic" class="form-control" [(ngModel)] = "clinicObject">
+                                        <!-- <option value="default">----</option> -->
+                                    <option *ngFor="let clinic of clinics" [ngValue]="clinic">{{clinic.clinicName}}<span>   (Timings : {{clinic.timings}})</span></option>
+                                </select>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Department</label>
+                                <input class="form-control" type="text" name = "department" placeholder="Dentist" id = "department" [(ngModel)] = "vetObject.department" readonly="">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Vet</label>
+                                <select name = "vet" class="form-control" [(ngModel)] = "vetObject">
+                                    <!-- <option value="default">----</option> -->
+                                <option *ngFor="let vet of vets" [ngValue]="vet">{{vet.firstName}} {{vet.lastName}}</option>
+                            </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Date</label>
+                                        <input type="date" class="form-control" id="date" name = "date" [(ngModel)] = "appointmentDate" (focusout) = "validateDate(appointmentDate)">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Time</label>
+                                    <input type = "time" class="form-control datetimepicker" id = "time" name = "time" [(ngModel)] = "appointmentTime" (focusout) = "validateTime(appointmentTime, clinicTime) ">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Pet Owner Email</label>
+                                <input class="form-control" type="email"  name = "parentEmailId" readonly="" [(ngModel)] = "petObject.parentEmailId">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Pet Owner Phone Number</label>
+                                <input class="form-control" type="text" name = "parentPhoneNumber" [(ngModel)] = "petObject.parentPhoneNumber" readonly="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>More details</label>
+                        <textarea cols="30" rows="4" class="form-control" name = "moreDetails" [(ngModel)] = "message" placeholder="Enter more details"></textarea>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label class="display-block">Appointment Status</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="status" id="product_active" value="option1" checked>
+                            <label class="form-check-label" for="product_active">
+                            Active
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="status" id="product_inactive" value="option2">
+                            <label class="form-check-label" for="product_inactive">
+                            Inactive
+                            </label>
+                        </div>
+                    </div> -->
+                    <div class="m-t-20 text-center">
+                        <button type="submit" class="btn btn-primary submit-btn" >Add Appointment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

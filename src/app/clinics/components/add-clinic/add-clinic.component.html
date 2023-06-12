@@ -1,0 +1,95 @@
+<div class="main-wrapper">
+    <app-menu></app-menu>
+    <div class="page-wrapper">
+        <div class="content">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <h4 class="page-title">Add Clinic</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <form [formGroup]="formValue">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Clinic Info</label>
+                                    <input class="form-control" type="text" formControlName="clinicInfo" name="clinicInfo" >
+                                    <small *ngIf="formValue.get('clinicInfo')?.invalid && (formValue.get('clinicInfo')?.touched)" class="text-danger">Clinic Info is Required</small><br>
+                                    <small *ngIf="formValue.get('clinicInfo')?.hasError('minlength')" class="text-danger">Clinic Info should contain 3 characters</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Clinic Name</label>
+                                    <input class="form-control" type="text" formControlName="clinicName" name="clinicName"  >
+                                    <small *ngIf="formValue.get('clinicName')?.invalid &&  (formValue.get('clinicName')?.touched )" class="text-danger">Clinic Name is Required</small><br>
+                                    <small *ngIf="formValue.get('clinicName')?.hasError('minlength')" class="text-danger">Clinic Name should contain 3 characters</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Clinic Location</label>
+                                    <input class="form-control" type="text" formControlName="location" name="location"  >
+                                    <small *ngIf="formValue.get('location')?.invalid && formValue.get('location')?.touched" class="text-danger">Location is Required</small><br>
+                                    <small *ngIf="formValue.get('location')?.hasError('minlength')" class="text-danger">Clinic Location should contain 3 characters</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Open Time</label>
+                                    <input class="form-control" type="time" formControlName="openTimings" name="openTimings" >
+                                    <small *ngIf="formValue.get('openTimings')?.invalid && formValue.get('openTimings')?.touched" class="text-danger">Timing is Required</small><br>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Close Time</label>
+                                    <input class="form-control" type="time" formControlName="closeTimings" name="closeTimings" >
+                                    <small *ngIf="formValue.get('closeTimings')?.invalid && formValue.get('closeTimings')?.touched" class="text-danger">Timing is Required</small><br>
+                        
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Clinic Contact Number</label>
+                                    <input class="form-control" type="text" formControlName="phoneNumber" name="phoneNumber">
+                                    <small *ngIf="formValue.get('phoneNumber')?.invalid && formValue.get('phoneNumber')?.touched" class="text-danger">Contact Number is Required</small><br>
+                                    <small *ngIf="formValue.get('phoneNumber')?.hasError('minlength')" class="text-danger">Clinic contact number should contain 10 characters</small><br>
+                                    <small *ngIf="formValue.get('phoneNumber')?.hasError('pattern')" class="text-danger">Number is Invalid</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea class="form-control" formControlName="description" name="description" ></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Status</label>
+                                    <select class="select" formControlName="status" name="status" >
+                                        <small *ngIf="formValue.get('status')?.invalid && formValue.get('status')?.touched" class="text-danger">Status is Required</small>
+                                        <option>PENDING</option>
+                                        <option>APPROVED</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-t-20 text-center">
+                            <button class="btn btn-primary submit-btn" [disabled]="!formValue.valid" (click)="add()">Add Clinic</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
