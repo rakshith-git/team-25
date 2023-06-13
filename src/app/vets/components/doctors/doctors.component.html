@@ -4,7 +4,7 @@
     <div class="content">
       <div class="row">
         <div class="col-sm-4 col-3">
-          <h1 class="page-title"><b>Vets</b></h1>
+          <h1 class="page-title"><b>Vets details</b></h1>
         </div>
         <div class="col-sm-8 col-9 text-right m-b-20">
           <a
@@ -54,6 +54,7 @@
                   href="#"
                   data-toggle="modal"
                   data-target="#deactivate_doctor"
+                  (click)="deactivateVets(vet.npiNo)"
                 >
                   <i class="fa-solid fa-circle-xmark"></i> Deactivate</a
                 >
